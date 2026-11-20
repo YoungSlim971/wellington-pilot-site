@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://accounts.google.com/gsi/; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; connect-src https://www.googleapis.com https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<script async src="https://accounts.google.com/gsi/client"></script>
+<title>Wellington · Réservations cuisine</title>
+<style>
+:root { color-scheme:light; --vert:#203f37; --encre:#202e28; --second:#53665b; --ligne:#d9dfd5; --papier:#f7f7f0; }
+* { box-sizing:border-box }
+body { margin:0; background:var(--papier); color:var(--encre); font:16px/1.45 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif }
+main, .barre { max-width:880px; margin:auto; padding:0 24px }
+header { background:#fffef9; border-bottom:1px solid var(--ligne) }
+.barre { height:76px; display:flex; align-items:center; gap:12px }
+.logo { width:45px; height:45px; border-radius:11px }
+.marque { font:600 22px Georgia,serif; letter-spacing:-.5px }
+.consultation { margin-left:auto; color:var(--second); font-size:13px }
+main { padding-bottom:40px }
+.entete { margin:32px 0 18px; display:flex; align-items:flex-end; flex-wrap:wrap; justify-content:space-between; gap:14px }
+h1 { font:normal clamp(34px,6vw,49px)/1.1 Georgia,serif; margin:3px 0 0; color:var(--vert); letter-spacing:-1.2px }
+.kicker { margin:0; font-size:13px; color:var(--second); font-weight:600 }
+button, input { color:var(--encre); font:inherit }
+button { cursor:pointer }
+button:focus-visible, input:focus-visible, summary:focus-visible { outline:3px solid #947237; outline-offset:3px }
+.jours { display:flex; align-items:center; gap:5px }
+.jours button, .jours input, #actualiser { min-height:44px; border:1px solid var(--ligne); border-radius:10px; background:#fffef9; padding:6px 10px }
+.jours button { min-width:44px; color:var(--vert); font-size:22px; line-height:1 }
+.jours input { max-width:162px; min-width:0 }
+.bilan { border-radius:16px; color:#fff; background:var(--vert); display:grid; grid-template-columns:1fr 1fr; padding:19px 0; margin:22px 0 18px }
+.chiffre { padding:0 24px; display:flex; flex-direction:column }
+.chiffre + .chiffre { border-left:1px solid #597064 }
+.chiffre strong { font:normal 36px/1.08 Georgia,serif; font-variant-numeric:tabular-nums }
+.chiffre span { font-size:14px; color:#e3ebe4; margin-top:5px }
+.filtres { display:flex; gap:5px; background:#e7ebe3; padding:4px; border-radius:12px; width:max-content; max-width:100% }
+.filtres button { border:0; border-radius:9px; background:transparent; min-height:42px; padding:7px 17px; font-size:15px }
+.filtres button[aria-pressed=true] { background:white; color:var(--vert); font-weight:650; box-shadow:0 1px 4px #203f3719 }
+h2 { font:normal 25px Georgia,serif; margin:24px 0 11px; color:var(--vert) }
+.liste { background:white; border:1px solid var(--ligne); border-radius:14px; overflow:hidden }
+details + details { border-top:1px solid var(--ligne) }
+summary { list-style:none; display:grid; grid-template-columns:64px 1fr auto; align-items:start; gap:14px; padding:16px; cursor:pointer }
+summary::-webkit-details-marker { display:none }
+.horaire { font-weight:700; font-variant-numeric:tabular-nums; line-height:1.25 }
+.horaire small { display:block; color:var(--second); font-weight:400; margin-top:4px }
+.nom { display:block; font-size:18px; font-weight:650; overflow-wrap:anywhere }
+.placement { display:block; color:var(--second); margin-top:3px; font-size:14px }
+.etat { font-weight:600; font-size:13px; color:var(--vert); display:block; margin-top:4px }
+.annulee .nom { text-decoration:line-through; color:var(--second) }
+.annulee .etat { color:#864523 }
+.fleche { color:var(--second); font-size:21px; transition:transform .12s; line-height:1.2 }
+details[open] .fleche { transform:rotate(90deg) }
+.note { display:block; color:#4a4d36; margin-top:6px; font-size:14px; white-space:pre-line; overflow-wrap:anywhere }
+.detail { padding:0 16px 16px 94px; font-size:14px; color:var(--second); overflow-wrap:anywhere }
+.detail p { margin:4px 0 }
+#message { margin:14px 0 0; color:var(--second) }
+#message:empty { display:none }
+#suivi { margin-top:20px; display:flex; align-items:center; justify-content:space-between; gap:12px; color:var(--second); font-size:13px }
+#actualiser { color:var(--vert); font-weight:600 }
+@media(max-width:560px) { main,.barre{padding-left:16px;padding-right:16px}.barre{height:61px}.entete{margin-top:22px}.jours{width:100%}.jours input{flex:1;max-width:none;text-align:center}.bilan{margin-top:18px}.chiffre{padding:0 15px}.filtres{width:100%}.filtres button{flex:1;padding:7px 9px}summary{gap:10px;grid-template-columns:50px 1fr auto;padding:14px 12px}.detail{padding-left:72px}}
+[hidden] {display:none!important}
+.connexion {margin-top:32px;border:1px solid var(--ligne);border-radius:16px;background:#fffef9;padding:24px}
+.connexion h2 {margin:0 0 8px}
+.connexion p {margin:0 0 15px}
+#connecter {border:0;border-radius:10px;background:var(--vert);color:white;padding:12px 18px;font-weight:650}
+#quitter {background:none;border:0;color:var(--second);text-decoration:underline;padding:8px;cursor:pointer}
+</style>
+</head>
+<body>
+<header><div class="barre"><img class="logo" alt="" src="data:image/jpeg;base64,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"><span class="marque">Wellington</span><span class="consultation">Cuisine · Lecture seule</span></div></header>
+<main>
+<div class="entete"><div><p class="kicker" id="jourLong"></p><h1>Réservations</h1></div>
+<div class="jours" id="navigation" hidden><button type="button" id="avant" aria-label="Jour précédent">‹</button><input id="jour" type="date" aria-label="Date des réservations"><button type="button" id="apres" aria-label="Jour suivant">›</button></div></div>
+<section id="connexion" class="connexion">
+<h2>Accès cuisine</h2><p id="avis" role="status">Connecte-toi avec le compte Google Wellington pour consulter les réservations.</p>
+<button id="connecter" type="button">Se connecter avec Google</button>
+</section>
+<div id="service" hidden>
+<div class="bilan"><div class="chiffre"><strong id="couverts">—</strong><span>Couverts prévus</span></div><div class="chiffre"><strong id="nombre">—</strong><span>Réservations actives</span></div></div>
+<div class="filtres" aria-label="Filtrer par service" role="group"><button type="button" data-service="all" aria-pressed="true">Journée</button><button type="button" data-service="midi" aria-pressed="false">Déjeuner</button><button type="button" data-service="soir" aria-pressed="false">Dîner</button></div>
+<p id="message" role="status"></p>
+<div id="contenu"></div>
+<div id="suivi"><span id="sync" aria-live="polite"></span><button type="button" id="actualiser">Actualiser</button></div>
+<button id="quitter" type="button">Fermer la session cuisine</button></div>
+</main>
+<script type="module" src="./cuisine.js"></script>
+</body>
+</html>
